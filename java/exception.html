@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Java 的异常处理"><meta name="keywords" content="java"><meta name="author" content="csthink"><meta name="copyright" content="csthink"><title>Java 的异常处理 | csthink</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-7505588143637216',
+  enable_page_level_ads: 'true'
+});
+</script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?fed3d74ab32e5dd6a16eb05a9ab4977d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'ca-pub-7505588143637216', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Throwable-类常用方法"><span class="toc-number">1.</span> <span class="toc-text">Throwable 类常用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见-Exception-和-Error-的描述"><span class="toc-number">2.</span> <span class="toc-text">常见 Exception 和 Error 的描述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RuntimeException"><span class="toc-number">2.1.</span> <span class="toc-text">RuntimeException</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非RuntimeException"><span class="toc-number">2.2.</span> <span class="toc-text">非RuntimeException</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Error"><span class="toc-number">2.3.</span> <span class="toc-text">Error</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#NoClassDefFoundError的成因"><span class="toc-number">2.3.1.</span> <span class="toc-text">NoClassDefFoundError的成因</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常处理机制"><span class="toc-number">3.</span> <span class="toc-text">异常处理机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#try、catch、finally、throw、throws"><span class="toc-number">3.1.</span> <span class="toc-text">try、catch、finally、throw、throws</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在以下4种特殊情况下，finally-块不会被执行："><span class="toc-number">3.1.1.</span> <span class="toc-text">在以下4种特殊情况下，finally 块不会被执行：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于返回值："><span class="toc-number">3.1.2.</span> <span class="toc-text">关于返回值：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义异常"><span class="toc-number">3.2.</span> <span class="toc-text">自定义异常</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://images.csthink.com/github.png"></div><div class="author-info__name text-center">csthink</div><div class="author-info__description text-center">csthink 的学习笔记</div><div class="follow-button"><a href="https://github.com/csthink">Follow me</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">13</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">3</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">3</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://images.csthink.com/rocket.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">csthink</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">Home</a><a class="site-page" href="/about">About</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span></div><div id="post-info"><div id="post-title">Java 的异常处理</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-01-01</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/java/">java</a><div class="post-meta-wordcount"><span>Word count: </span><span class="word-count">1.1k</span><span class="post-meta__separator">|</span><span>Reading time: 3 min</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p><strong>异常指不期而至的各种状况，如：文件找不到、网络连接失败、除0操作、非法参数等。异常是一个事件，它发生在程序运行期间，干扰了正常的指令流程</strong></p>
+<blockquote>
+<p>Error 通常是灾难性的致命的错误，是程序无法控制和处理的，当出现这类异常时，JVM 一般会选择终止线程，Exception 通常情况下是可以被程序处理的，并且在程序中应该尽可能的去处理这些异常。，</p>
+</blockquote>
+<a id="more"></a>
+
+<p><img src="https://images.csthink.com/PPjwP.png" alt="Java 异常类"></p>
+<ul>
+<li>Error: 程序无法处理的系统错误 ，编译器不做检查,属于 JVM 需要负担的责任<ul>
+<li>由 Java 虚拟机生成并抛出，大多数错误与代码编写者所执行的操作无关 </li>
+</ul>
+</li>
+<li>Excepiton: 程序可以处理的异常，捕获后可能恢复<ul>
+<li>运行时异常(RuntimeException): 这些异常是非检查异常(Unchecked Exception),不可预知的，程序应该自行避免,Java 编译器不要求强制处理的异常，在编译阶段不会去检查这类异常</li>
+<li>非运行时异常: 可预知的异常(Checked Exception)，必须处理的异常，否则编译不能通过编译<ul>
+<li>IO异常文件不存在打开的时候出现的异常</li>
+<li>SQL异常</li>
+<li>自定义异常</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Throwable-类常用方法"><a href="#Throwable-类常用方法" class="headerlink" title="Throwable 类常用方法"></a>Throwable 类常用方法</h2><ul>
+<li><strong>public string getMessage()</strong>:返回异常发生时的详细信息</li>
+<li><strong>public string toString()</strong>:返回异常发生时的简要描述</li>
+<li><strong>public string getLocalizedMessage()</strong>:返回异常对象的本地化信息。使用Throwable的子类覆盖这个方法，可以声称本地化信息。如果子类没有覆盖该方法，则该方法返回的信息与getMessage（）返回的结果相同</li>
+<li><strong>public void printStackTrace()</strong>:在控制台上打印Throwable对象封装的异常信息</li>
+</ul>
+<h2 id="常见-Exception-和-Error-的描述"><a href="#常见-Exception-和-Error-的描述" class="headerlink" title="常见 Exception 和 Error 的描述"></a>常见 Exception 和 Error 的描述</h2><h3 id="RuntimeException"><a href="#RuntimeException" class="headerlink" title="RuntimeException"></a><strong>RuntimeException</strong></h3><ol>
+<li>NullPointerException - 空指针引用异常</li>
+<li>ClassCastException - 类型强制转换异常</li>
+<li>IllegalArgumentException - 传递非法参数异常</li>
+<li>IndexOutOfBoundsException - 下标越界异常</li>
+<li>ArrayIndexOutOfBoundsException - 数组下标越界</li>
+<li>NumberFormatException - 数字格式异常</li>
+<li>ArithmeticException - 算术异常</li>
+<li>MissingResourceException - 丢失资源</li>
+</ol>
+<h3 id="非RuntimeException"><a href="#非RuntimeException" class="headerlink" title="非RuntimeException"></a><strong>非RuntimeException</strong></h3><ol>
+<li>IOException - IO操作异常</li>
+<li>FileNotFoundException</li>
+<li>SQLException - SQL 异常</li>
+<li>ClassNotFoundException - 找不到类</li>
+</ol>
+<h3 id="Error"><a href="#Error" class="headerlink" title="Error"></a><strong>Error</strong></h3><ol>
+<li>NoClassDefFoundError - 类定义错误</li>
+<li>StackOverflowError - 深递归导致栈被耗尽</li>
+<li>OutOfMemoryError - 内存溢出</li>
+<li>VirtualMachineError - 虚拟机错误</li>
+<li>ThreadDeath - 线程死锁</li>
+<li>LinkageError - 链接错误</li>
+</ol>
+<h4 id="NoClassDefFoundError的成因"><a href="#NoClassDefFoundError的成因" class="headerlink" title="NoClassDefFoundError的成因"></a><strong>NoClassDefFoundError的成因</strong></h4><ol>
+<li>类依赖的class或jar不存在</li>
+<li>类文件存在，但是存在不同的域中</li>
+<li>大小写问题，javac编译的时候无视大小写，很有可能编译出来的class文件就与想要的不一样</li>
+</ol>
+<h2 id="异常处理机制"><a href="#异常处理机制" class="headerlink" title="异常处理机制"></a>异常处理机制</h2><p><strong>对于Checked Exception 必须捕获或声明抛出，对于UnChecked Exception及其子类可忽略不检查</strong></p>
+<ol>
+<li>抛出异常: 创建异常对象，交由运行时系统处理</li>
+<li>捕获异常: 在方法抛出异常之后,运行时系统寻找合适的异常处理器处理异常，若未能找到合适的异常处理器则运行时系统终止运行</li>
+</ol>
+<h3 id="try、catch、finally、throw、throws"><a href="#try、catch、finally、throw、throws" class="headerlink" title="try、catch、finally、throw、throws"></a>try、catch、finally、throw、throws</h3><ul>
+<li>try 块：用于捕获异常。其后可接零个或多个catch块，如果没有catch块，则必须跟一个finally块</li>
+<li>catch 块：用于处理try捕获到的异常</li>
+<li>finally 块：无论是否捕获或处理异常，finally块里的语句都会被执行。当在try块或catch块中遇到return语句时，finally语句块将在方法返回之前被执行</li>
+<li>throw: 抛出明确的异常</li>
+<li>throws: 如果一个方法可以导致一个异常但不处理它，它必须指定这种行为以使方法的调用者可以保护它们自己而不发生异常，可以在方法声明中包含一个throws子句</li>
+</ul>
+<p><img src="https://images.csthink.com/15547746383189.jpg" alt="try、catch、finally、throw、throws"></p>
+<h4 id="在以下4种特殊情况下，finally-块不会被执行："><a href="#在以下4种特殊情况下，finally-块不会被执行：" class="headerlink" title="在以下4种特殊情况下，finally 块不会被执行："></a><strong>在以下4种特殊情况下，finally 块不会被执行：</strong></h4><ol>
+<li>在 finally 语句块中发生了异常</li>
+<li>在前面的代码中用了 System.exit()退出程序</li>
+<li>程序所在的线程死亡</li>
+<li>关闭 CPU</li>
+</ol>
+<h4 id="关于返回值："><a href="#关于返回值：" class="headerlink" title="关于返回值："></a><strong>关于返回值：</strong></h4><p>如果 try 语句里有 return，返回的是 try 语句块中变量值。 详细执行过程如下：</p>
+<ol>
+<li>如果有返回值，就把返回值保存到局部变量中</li>
+<li>执行 jsr 指令跳到 finally 语句里执行</li>
+<li>执行完 finally 语句后，返回之前保存在局部变量里的值</li>
+<li>如果 try，finally 语句里均有 return，忽略 try 的 return，而使用 finally 的return</li>
+</ol>
+<h3 id="自定义异常"><a href="#自定义异常" class="headerlink" title="自定义异常"></a>自定义异常</h3><p>使用Java内置的异常类可以描述在编程时出现的大部分异常情况。除此之外，用户还可以自定义异常。用户自定义异常类，只需继承Exception类即可</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">csthink</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="/csthink.com/java/exception.html">csthink.com/java/exception.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a></div><div class="post-qr-code"><div class="post-qr-code-item"><img class="post-qr-code__img" src="https://images.csthink.com/zfb.jpg"><div class="post-qr-code__desc">支付宝打赏</div></div><div class="post-qr-code-item"><img class="post-qr-code__img" src="https://images.csthink.com/weixin.jpg"><div class="post-qr-code__desc">微信打赏</div></div></div><div class="social-share"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/java/servlet.html"><i class="fa fa-chevron-left">  </i><span>Servlet 与 JSP</span></a></div><div class="next-post pull-right"><a href="/java/desing_principle_part_one.html"><span>软件设计原则-上</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://images.csthink.com/rocket.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By csthink</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">致所有热爱编程的我们<br> Write Code. Make Magic.</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

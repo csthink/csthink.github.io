@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="软件设计原则-上"><meta name="keywords" content="java"><meta name="author" content="csthink"><meta name="copyright" content="csthink"><title>软件设计原则-上 | csthink</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-7505588143637216',
+  enable_page_level_ads: 'true'
+});
+</script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?fed3d74ab32e5dd6a16eb05a9ab4977d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'ca-pub-7505588143637216', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开闭原则"><span class="toc-number">1.</span> <span class="toc-text">开闭原则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Code-演示"><span class="toc-number">1.1.</span> <span class="toc-text">Code 演示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖倒置原则"><span class="toc-number">2.</span> <span class="toc-text">依赖倒置原则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Code-演示-1"><span class="toc-number">2.1.</span> <span class="toc-text">Code 演示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单一职责原则"><span class="toc-number">3.</span> <span class="toc-text">单一职责原则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Code"><span class="toc-number">3.1.</span> <span class="toc-text">Code</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#类没有使用单一职责"><span class="toc-number">3.1.1.</span> <span class="toc-text">类没有使用单一职责</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类应用单一职责原则"><span class="toc-number">3.1.2.</span> <span class="toc-text">类应用单一职责原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口没有遵循单一职责原则"><span class="toc-number">3.1.3.</span> <span class="toc-text">接口没有遵循单一职责原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口遵循单一职责原则"><span class="toc-number">3.1.4.</span> <span class="toc-text">接口遵循单一职责原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法采用单一职责原则"><span class="toc-number">3.1.5.</span> <span class="toc-text">方法采用单一职责原则</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单一职责原则的总结"><span class="toc-number">3.2.</span> <span class="toc-text">单一职责原则的总结</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://images.csthink.com/github.png"></div><div class="author-info__name text-center">csthink</div><div class="author-info__description text-center">csthink 的学习笔记</div><div class="follow-button"><a href="https://github.com/csthink">Follow me</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">13</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">3</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">3</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://images.csthink.com/rocket.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">csthink</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">Home</a><a class="site-page" href="/about">About</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span></div><div id="post-info"><div id="post-title">软件设计原则-上</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-12-21</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/java/">java</a><div class="post-meta-wordcount"><span>Word count: </span><span class="word-count">836</span><span class="post-meta__separator">|</span><span>Reading time: 2 min</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><blockquote>
+<p>在程序设计领域， SOLID（单一功能、开闭原则、里氏替换、接口隔离以及依赖反转）是由罗伯特·C·马丁在21世纪早期引入的记忆术首字母缩略字，指代了面向对象编程和面向对象设计的五个基本原则。当这些原则被一起应用时，它们使得一个程序员开发一个容易进行软件维护和扩展的系统变得更加可能。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h2><blockquote>
+<p>定义: 一个软件实体如类、模块和函数应该对扩展开放，对修改关闭</p>
+</blockquote>
+<ul>
+<li>用抽象构建框架，用实现扩展细节</li>
+<li>优点: 提高软件系统的可复用性及可维护性</li>
+<li>实现核心： 面向抽象编程</li>
+</ul>
+<h3 id="Code-演示"><a href="#Code-演示" class="headerlink" title="Code 演示"></a>Code 演示</h3><p><img src="https://images.csthink.com/openclose.png" alt="开闭原则实现"></p>
+<p><img src="https://images.csthink.com/cc.png" alt="JavaCourse 实现类"></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2009.52.32.png" alt="JavaDiscountCourse 子类"></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2010.00.55.png" alt="测试类"></p>
+<h2 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h2><blockquote>
+<p>定义: 高层模块不应该依赖低层模块，二者都应该依赖其抽象</p>
+</blockquote>
+<ul>
+<li>抽象不应该依赖细节，细节应该依赖抽象</li>
+<li>针对接口编程，不要针对实现编程</li>
+<li>优点: 可以减少类间的耦合性，提高系统稳定性，提高代码可读性和可维护性，可降低修改程序所造成的风险</li>
+</ul>
+<h3 id="Code-演示-1"><a href="#Code-演示-1" class="headerlink" title="Code 演示"></a>Code 演示</h3><p><img src="https://images.csthink.com/Package%20dependencyInversion.png" alt="依赖倒置原则实现"></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2014.32.39.png" alt="接口"></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2014.23.17.png" alt="实现类1"></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2014.23.41.png" alt="实现类2"></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2014.24.08.png" alt="实现类3"></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2014.26.00.png" alt="业务类"></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2014.26.30.png" alt="测试类,高层模块"></p>
+<h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><blockquote>
+<p>定义: 不要存在多于一个导致类变更的原因</p>
+</blockquote>
+<ul>
+<li>一个类/接口/方法只负责一项职责</li>
+<li>优点: 降低类的复杂度、提高类的可读性，提高系统的可维护性、降低变更引起的风险</li>
+</ul>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><h4 id="类没有使用单一职责"><a href="#类没有使用单一职责" class="headerlink" title="类没有使用单一职责"></a>类没有使用单一职责</h4><p><strong>这个例子中的 Bird 类同时为两种鸟类移动的行为负责，每次增加或修改一个鸟类都会影响到其他鸟类的行为</strong></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2015.02.55.png" alt="Bird类"></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2015.04.27.png" alt="测试类"></p>
+<h4 id="类应用单一职责原则"><a href="#类应用单一职责原则" class="headerlink" title="类应用单一职责原则"></a>类应用单一职责原则</h4><p><strong>这个例子中每种鸟都有自己的行为类负责，增加或修改某个鸟类，不会影响到其他的鸟类</strong></p>
+<p><img src="https://images.csthink.com/Package%20singleresponsibility.png" alt="类遵循了单一职责原则设计"></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2015.05.06.png" alt="会飞的鸟类"></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2015.05.41.png" alt="用脚走路的鸟类"></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2015.06.17.png" alt="测试类"></p>
+<h4 id="接口没有遵循单一职责原则"><a href="#接口没有遵循单一职责原则" class="headerlink" title="接口没有遵循单一职责原则"></a>接口没有遵循单一职责原则</h4><p><strong>下面这个接口没有遵循单一职责原则，<code>getCourseName()</code> 与 <code>getCourseVideo</code> 属于课程信息相关的职责，而 <code>studyCourse()</code> 与<code>refundCourse()</code>却属于课程管理相关的职责</strong></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2015.10.58.png" alt="没有遵循单一职责的接口"></p>
+<h4 id="接口遵循单一职责原则"><a href="#接口遵循单一职责原则" class="headerlink" title="接口遵循单一职责原则"></a>接口遵循单一职责原则</h4><p><img src="https://images.csthink.com/Package%20singleresponsibility.png" alt="接口遵循了单一职责原则设计"></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2015.14.22.png" alt="课程信息接口"></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2015.14.44.png" alt="课程管理接口"></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2015.15.29.png" alt="实现类实现两个课程相关的接口"></p>
+<h4 id="方法采用单一职责原则"><a href="#方法采用单一职责原则" class="headerlink" title="方法采用单一职责原则"></a>方法采用单一职责原则</h4><p><img src="https://images.csthink.com/Carbonize%202019-04-16%20at%2015.22.11.png" alt="方法的单一职责原则"></p>
+<h3 id="单一职责原则的总结"><a href="#单一职责原则的总结" class="headerlink" title="单一职责原则的总结"></a>单一职责原则的总结</h3><p>单一职责原则告诉我们: <strong>一个类不能太”累”</strong>，在软件系统中，一个类(大到模块，小到方法)承担的职责越多，它被复用的可能性就越小，而且一个类承担的职责过多，将相当于将这些职责耦合在一起，当其中一个职责变化时，可能会影响其他职责的运作，因此要将这些职责进行分离，将不同的职责封装在不同的类中，即将不同的变化原因封装在不同的类中，如果多个职责总是同时发生改变则可将他们封装在同一个类中。</p>
+<p>实际项目开发过程中，如果所有的类、接口、方法都遵循单一职责原则，可能会导致类的数量巨大，结合项目的开发周期，开发人员代码水平的不同，不可能让类、接口、方法都遵循单一职责原则，但我们应尽量保证接口与方法遵循单一职责原则。</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">csthink</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="/csthink.com/java/desing_principle_part_one.html">csthink.com/java/desing_principle_part_one.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a></div><div class="post-qr-code"><div class="post-qr-code-item"><img class="post-qr-code__img" src="https://images.csthink.com/zfb.jpg"><div class="post-qr-code__desc">支付宝打赏</div></div><div class="post-qr-code-item"><img class="post-qr-code__img" src="https://images.csthink.com/weixin.jpg"><div class="post-qr-code__desc">微信打赏</div></div></div><div class="social-share"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/java/exception.html"><i class="fa fa-chevron-left">  </i><span>Java 的异常处理</span></a></div><div class="next-post pull-right"><a href="/java/oop.html"><span>Java 面向对象</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://images.csthink.com/rocket.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By csthink</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">致所有热爱编程的我们<br> Write Code. Make Magic.</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

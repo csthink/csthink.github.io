@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Java 面向对象"><meta name="keywords" content="java"><meta name="author" content="csthink"><meta name="copyright" content="csthink"><title>Java 面向对象 | csthink</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-7505588143637216',
+  enable_page_level_ads: 'true'
+});
+</script><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?fed3d74ab32e5dd6a16eb05a9ab4977d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'ca-pub-7505588143637216', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#面向过程"><span class="toc-number">1.</span> <span class="toc-text">面向过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面向对象"><span class="toc-number">2.</span> <span class="toc-text">面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类、对象"><span class="toc-number">2.1.</span> <span class="toc-text">类、对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#类的特点"><span class="toc-number">2.1.1.</span> <span class="toc-text">类的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象"><span class="toc-number">2.1.2.</span> <span class="toc-text">对象</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#对象实例化"><span class="toc-number">2.1.2.1.</span> <span class="toc-text">对象实例化</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#匿名对象的创建和使用方法"><span class="toc-number">2.1.2.1.1.</span> <span class="toc-text">匿名对象的创建和使用方法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#对象的使用"><span class="toc-number">2.1.2.1.2.</span> <span class="toc-text">对象的使用</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造方法"><span class="toc-number">2.2.</span> <span class="toc-text">构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重载与重写"><span class="toc-number">2.3.</span> <span class="toc-text">重载与重写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#重载-Overload"><span class="toc-number">2.3.1.</span> <span class="toc-text">重载(Overload)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重写-Override"><span class="toc-number">2.3.2.</span> <span class="toc-text">重写(Override)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#重写的例子"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">重写的例子</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#包"><span class="toc-number">2.4.</span> <span class="toc-text">包</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#导入bao"><span class="toc-number">2.4.1.</span> <span class="toc-text">导入bao</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#this-关键字"><span class="toc-number">2.5.</span> <span class="toc-text">this 关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#this-的使用"><span class="toc-number">2.5.1.</span> <span class="toc-text">this 的使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#static关键字"><span class="toc-number">2.6.</span> <span class="toc-text">static关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#静态变量"><span class="toc-number">2.6.1.</span> <span class="toc-text">静态变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#静态方法"><span class="toc-number">2.6.2.</span> <span class="toc-text">静态方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#静态代码块"><span class="toc-number">2.6.3.</span> <span class="toc-text">静态代码块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#静态内部类"><span class="toc-number">2.6.4.</span> <span class="toc-text">静态内部类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#静态导包"><span class="toc-number">2.6.5.</span> <span class="toc-text">静态导包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#静态变量、静态代码块、普通代码块、实例变量、构造方法的初始化顺序"><span class="toc-number">2.6.6.</span> <span class="toc-text">静态变量、静态代码块、普通代码块、实例变量、构造方法的初始化顺序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反射"><span class="toc-number">2.7.</span> <span class="toc-text">反射</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一个反射的例子-通过反射去访问类属性、成员方法"><span class="toc-number">2.7.1.</span> <span class="toc-text">一个反射的例子(通过反射去访问类属性、成员方法)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#抽象类和抽象函数"><span class="toc-number">2.8.</span> <span class="toc-text">抽象类和抽象函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#抽象函数"><span class="toc-number">2.8.1.</span> <span class="toc-text">抽象函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#抽象类-天生当爹的"><span class="toc-number">2.8.2.</span> <span class="toc-text">抽象类(天生当爹的)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用场景"><span class="toc-number">2.8.3.</span> <span class="toc-text">使用场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口"><span class="toc-number">2.9.</span> <span class="toc-text">接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用场景-1"><span class="toc-number">2.9.1.</span> <span class="toc-text">使用场景</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面向对象编程三大特性-封装-继承-多态"><span class="toc-number">3.</span> <span class="toc-text">面向对象编程三大特性: 封装 继承 多态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#封装"><span class="toc-number">3.1.</span> <span class="toc-text">封装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#封装实现的步骤"><span class="toc-number">3.1.1.</span> <span class="toc-text">封装实现的步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#public-公共权限"><span class="toc-number">3.1.2.</span> <span class="toc-text">public 公共权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#private-私有权限"><span class="toc-number">3.1.3.</span> <span class="toc-text">private    私有权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#default-包级别访问权限-默认权限"><span class="toc-number">3.1.4.</span> <span class="toc-text">default    包级别访问权限/默认权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#protected-受保护权限"><span class="toc-number">3.1.5.</span> <span class="toc-text">protected    受保护权限</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#继承"><span class="toc-number">3.2.</span> <span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#super-关键字"><span class="toc-number">3.2.1.</span> <span class="toc-text">super 关键字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#final-关键字"><span class="toc-number">3.2.2.</span> <span class="toc-text">final 关键字</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多态"><span class="toc-number">3.3.</span> <span class="toc-text">多态</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://images.csthink.com/github.png"></div><div class="author-info__name text-center">csthink</div><div class="author-info__description text-center">csthink 的学习笔记</div><div class="follow-button"><a href="https://github.com/csthink">Follow me</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">13</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">3</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">3</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://images.csthink.com/rocket.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">csthink</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> Search</span></a><a class="site-page" href="/">Home</a><a class="site-page" href="/about">About</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span></div><div id="post-info"><div id="post-title">Java 面向对象</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-12-15</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/java/">java</a><div class="post-meta-wordcount"><span>Word count: </span><span class="word-count">3.4k</span><span class="post-meta__separator">|</span><span>Reading time: 10 min</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="面向过程"><a href="#面向过程" class="headerlink" title="面向过程"></a>面向过程</h2><p><strong>优点</strong>：性能比面向对象高。因为类调用时需要实例化，开销比较大，比较消耗资源，所以当性能是最重要的考量因素的时候，比如单片机、嵌入式开发、Linux/Unix 等一般采用面向过程开发</p>
+<p><strong>缺点</strong>： 没有面向对象易维护、易复用、易扩展</p>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p><strong>优点</strong>： 易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统更加灵活、更加易于维护</p>
+<p><strong>缺点</strong>： 性能比面向过程低</p>
+<a id="more"></a>
+
+<h3 id="类、对象"><a href="#类、对象" class="headerlink" title="类、对象"></a>类、对象</h3><p><strong>类是模板，确定对象将会拥有的特征(属性)和行为(方法)</strong></p>
+<h4 id="类的特点"><a href="#类的特点" class="headerlink" title="类的特点"></a>类的特点</h4><ul>
+<li>类是对象的类型</li>
+<li>具有相同属性和方法的一组对象的集合<ul>
+<li>属性: 对象具有的各种静态特征(“有什么”)</li>
+<li>方法: 对象具有的各种动态行为(“能做什么”)</li>
+</ul>
+</li>
+</ul>
+<h4 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h4><p><strong>对象是运行期的基本实体，它是一个封装了数据和操作这些数据的代码的逻辑实体</strong></p>
+<h5 id="对象实例化"><a href="#对象实例化" class="headerlink" title="对象实例化"></a>对象实例化</h5><ul>
+<li><p>声明对象  <code>Person p</code></p>
+</li>
+<li><p>实例化对象 <code>new Person();</code></p>
+</li>
+<li><p><code>Person p = new Person();</code></p>
+</li>
+<li><p>每次 new 对象都会产生新的实例化对象</p>
+</li>
+<li><p>多个对象可以指向同一块实例化空间</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Person p1 = <span class="keyword">new</span> Person();</span><br><span class="line">Person p2 = p1;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对象必须被实例化后才能使用</p>
+</li>
+<li><p>对象间的引用传递，实际上传递的是堆内存空间的使用权</p>
+</li>
+</ul>
+<h6 id="匿名对象的创建和使用方法"><a href="#匿名对象的创建和使用方法" class="headerlink" title="匿名对象的创建和使用方法"></a>匿名对象的创建和使用方法</h6><p>可以不定义对象的引用名称，而直接调用这个对象的方法。这样的对象叫做<strong>匿名对象</strong>,匿名对象通常都是一次性的。</p>
+<p><code>new Person().eat();</code></p>
+<h6 id="对象的使用"><a href="#对象的使用" class="headerlink" title="对象的使用"></a>对象的使用</h6><ol>
+<li>对象.成员变量</li>
+<li>对象.成员方法()</li>
+</ol>
+<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><p><strong>主要用来在创建对象时初始化对象,即为对象的成员变量赋初始值</strong></p>
+<ul>
+<li>构造方法与类同名且没有返回值，但不能使用 void 关键字</li>
+<li>在对象实例化时调用</li>
+<li><strong>当没有指定构造方法时，编译器会在编译时自动添加无参数且方法体为空的构造方法</strong></li>
+<li>当有指定构造方法时，无论是有参还是无参，系统都不会自动添加无参的构造方法</li>
+<li>一个类中可以有多个构造方法(构造函数的重载)</li>
+</ul>
+<h3 id="重载与重写"><a href="#重载与重写" class="headerlink" title="重载与重写"></a>重载与重写</h3><p><strong>父类的私有属性和构造方法并不能被继承，所以构造器 Constructor 就不能被重写(override),但是可以被重载(overload),所以你可以看到一个类中有多个构造函数的情况</strong></p>
+<h4 id="重载-Overload"><a href="#重载-Overload" class="headerlink" title="重载(Overload)"></a>重载(Overload)</h4><p><strong>发生在同一个类中，方法名相同，参数类型、个数、顺序至少有一处不同</strong></p>
+<ul>
+<li>返回值不同，其它都相同不构成重载关系</li>
+</ul>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-09%20at%2014.48.29.png" alt="重载"></p>
+<h4 id="重写-Override"><a href="#重写-Override" class="headerlink" title="重写(Override)"></a>重写(Override)</h4><p><strong>发生在继承体关系中，方法名、参数列表必须相同，返回值范围小于等于父类，抛出的异常范围小于等于父类，访问修饰符范围大于等于父类</strong></p>
+<ul>
+<li>使用 @Override 注解，可以让编译器帮忙检查是否满足重载的限制条件</li>
+<li>如果父类方法访问修饰符为 private 则子类就不能重写该方法</li>
+</ul>
+<h5 id="重写的例子"><a href="#重写的例子" class="headerlink" title="重写的例子"></a>重写的例子</h5><p><img src="https://images.csthink.com/Carbonize%202019-04-09%20at%2012.36.39.png" alt="重写"></p>
+<ul>
+<li>子类方法访问权限为 public，大于父类的 protected。</li>
+<li>子类的返回类型为 ArrayList，是父类返回类型 List 的子类。</li>
+<li>子类抛出的异常类型为 Exception，是父类抛出异常 Throwable 的子类。</li>
+<li>子类重写方法使用 @Override 注解，从而让编译器自动检查是否满足限制条件</li>
+</ul>
+<h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><p><strong>为 JAVA 类提供了命名空间，用于管理 Java 文件，解决同名文件冲突</strong></p>
+<ul>
+<li>package 包名; 必须放在Java源文件中的第一行</li>
+<li>一个Java源文件只能有一个 package 语句</li>
+<li>包名命名采用全英文小写，命名规则: 域名倒序 + 模块 + 功能</li>
+<li>一个类的全名应该是 ”包名.类名”</li>
+<li>使用javac 编译时需要使用 -d 参数，该参数的作用是依据包名生成相应的文件夹</li>
+</ul>
+<h4 id="导入bao"><a href="#导入bao" class="headerlink" title="导入bao"></a>导入bao</h4><ul>
+<li>import 包名.类名;</li>
+<li>import com.csthink.*; 导入包中全部类</li>
+<li>import com.csthink.utils.JdbcUtils; 导入包中指定类</li>
+</ul>
+<h3 id="this-关键字"><a href="#this-关键字" class="headerlink" title="this 关键字"></a>this 关键字</h3><p><strong>当前对象的默认引用</strong></p>
+<h4 id="this-的使用"><a href="#this-的使用" class="headerlink" title="this 的使用"></a>this 的使用</h4><ul>
+<li>调用成员变量，解决成员变量与局部变量同名问题</li>
+<li>调用成员方法</li>
+<li>调用重载的构造方法</li>
+</ul>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-09%20at%2012.45.58.png" alt="this 的使用"></p>
+<h3 id="static关键字"><a href="#static关键字" class="headerlink" title="static关键字"></a>static关键字</h3><p>静态成员随类加载产生，直至类销毁才回收</p>
+<h4 id="静态变量"><a href="#静态变量" class="headerlink" title="静态变量"></a>静态变量</h4><ul>
+<li>静态变量又称为类变量，该变量属于类，类所有的实例都共享静态变量，可以直接通过类名访问它，静态变量在内存中只存在一份</li>
+<li>实例变量，每创建一个实例就会产生一个实例变量，它与该实例同生共死</li>
+</ul>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-09%20at%2013.46.10.png" alt="静态变量"></p>
+<h4 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h4><p><strong>静态方法在类加载的时候就存在了，它不依赖于任何实例。所以静态方法必须有实现，也就是说它不能是抽象方法</strong></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-09%20at%2013.52.03.png" alt="静态方法"></p>
+<h4 id="静态代码块"><a href="#静态代码块" class="headerlink" title="静态代码块"></a>静态代码块</h4><p><strong>静态代码块在类初始时运行，只会运行一次</strong></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-09%20at%2013.54.46.png" alt="静态代码块"></p>
+<h4 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h4><p><strong>非静态内部类依赖于外部类的实例，而静态内部类不需要</strong></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-09%20at%2013.59.14.png" alt="静态内部类"></p>
+<h4 id="静态导包"><a href="#静态导包" class="headerlink" title="静态导包"></a>静态导包</h4><p><strong>在使用静态变量和方法时不用再指明 ClassName，从而简化代码，但可读性大大降低</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> com.xxx.ClassName.*;</span><br></pre></td></tr></table></figure>
+
+<h4 id="静态变量、静态代码块、普通代码块、实例变量、构造方法的初始化顺序"><a href="#静态变量、静态代码块、普通代码块、实例变量、构造方法的初始化顺序" class="headerlink" title="静态变量、静态代码块、普通代码块、实例变量、构造方法的初始化顺序"></a>静态变量、静态代码块、普通代码块、实例变量、构造方法的初始化顺序</h4><p><strong>静态变量和静态语句块优先于实例变量和普通语句块，静态变量和静态语句块的初始化顺序取决于它们在代码中的顺序</strong></p>
+<p>存在继承的情况下，初始化顺序为：</p>
+<ol>
+<li>父类（静态变量、静态语句块）</li>
+<li>子类（静态变量、静态语句块）</li>
+<li>父类（实例变量、普通语句块）</li>
+<li>父类（构造函数）</li>
+<li>子类（实例变量、普通语句块）</li>
+<li>子类（构造函数）</li>
+</ol>
+<h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><p><strong>Java反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性，这种动态获取信息以及动态调用对象方法的功能称为Java语言的反射机制</strong></p>
+<p>Class 和 java.lang.reflect 一起对反射提供了支持，java.lang.reflect 类库主要包含了以下三个类：</p>
+<ul>
+<li>Field ：可以使用 get() 和 set() 方法读取和修改 Field 对象关联的字段；</li>
+<li>Method ：可以使用 invoke() 方法调用与 Method 对象关联的方法；</li>
+<li>Constructor ：可以用 Constructor 创建新的对象。</li>
+</ul>
+<h4 id="一个反射的例子-通过反射去访问类属性、成员方法"><a href="#一个反射的例子-通过反射去访问类属性、成员方法" class="headerlink" title="一个反射的例子(通过反射去访问类属性、成员方法)"></a>一个反射的例子(通过反射去访问类属性、成员方法)</h4><p><img src="https://images.csthink.com/Carbonize%202019-04-09%20at%2014.34.47.png" alt="Robot 实体类"></p>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-09%20at%2014.36.54.png" alt="反射操作"></p>
+<h3 id="抽象类和抽象函数"><a href="#抽象类和抽象函数" class="headerlink" title="抽象类和抽象函数"></a>抽象类和抽象函数</h3><h4 id="抽象函数"><a href="#抽象函数" class="headerlink" title="抽象函数"></a>抽象函数</h4><p>抽象函数就是只有函数的定义，没有函数体的函数</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="抽象类-天生当爹的"><a href="#抽象类-天生当爹的" class="headerlink" title="抽象类(天生当爹的)"></a>抽象类(天生当爹的)</h4><p><strong>抽象类也称为基类，它只能作为父类被子类继承。在子类中需复写抽象类中的抽象函数，以便子类在继承</strong></p>
+<ul>
+<li><strong>抽象类不能够生成对象</strong><ul>
+<li>也就是不能调用这个类的构造函数来生成对象</li>
+<li>如果抽象类能生成对象，则意味着该对象也将会调用其中的抽象函数，而抽象函数是没有函数体的，这也将导致该调用的失败。所以不能调用抽象类来生成对象</li>
+</ul>
+</li>
+<li>如果一个类当中包含有抽象函数，这个类必须被声明为抽象类</li>
+<li>一个类当中没有包含抽象函数，这个类也可以被声明为抽象类</li>
+<li><strong>抽象类也是有构造函数的，而且子类的构造函数同样会调用抽象父类的构造函数</strong></li>
+</ul>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-09%20at%2015.14.15.png" alt="抽象类"></p>
+<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><ul>
+<li>需要在几个相关的类中共享代码</li>
+<li>需要能控制继承来的成员的访问权限，而不是都为 public</li>
+<li>需要继承非静态和非常量字段</li>
+</ul>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p><strong>接口是抽象类的延伸，在 Java 8 之前，它可以看成是一个完全抽象的类，也就是说它不能有任何的方法实现,从 Java 8 开始，接口也可以拥有默认的方法实现，这是因为不支持默认方法的接口的维护成本太高了。在 Java 8 之前，如果一个接口想要添加新的方法，那么要修改所有实现了该接口的类</strong></p>
+<ul>
+<li>使用 interface 定义</li>
+<li>接口当中的方法都是抽象方法</li>
+<li>接口当中的方法都是 public 权限,方法可以不用手动使用 public 修饰</li>
+<li>实现接口使用 implements 关键字</li>
+<li>一个类可以实现多个接口</li>
+<li>一个接口可以继承多个接口</li>
+<li>接口的字段默认都是 static 和 final 的</li>
+</ul>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-09%20at%2015.23.51.png" alt="接口"></p>
+<h4 id="使用场景-1"><a href="#使用场景-1" class="headerlink" title="使用场景"></a>使用场景</h4><ul>
+<li>需要让不相关的类都实现一个方法，例如不相关的类都可以实现 Compareable 接口中的 compareTo() 方法；</li>
+<li>需要使用多重继承</li>
+</ul>
+<h2 id="面向对象编程三大特性-封装-继承-多态"><a href="#面向对象编程三大特性-封装-继承-多态" class="headerlink" title="面向对象编程三大特性: 封装 继承 多态"></a>面向对象编程三大特性: 封装 继承 多态</h2><h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p><strong>封装把一个对象的属性私有化，同时提供一些可以被外界访问属性的方法</strong></p>
+<ul>
+<li>将类的某些信息隐藏在类内部，不允许外部程序直接访问</li>
+<li>通过该类提供的方法来实现对隐藏信息的操作和方法</li>
+<li>隐藏类的实例细节，方便修改和实现</li>
+<li>留出访问的接口，通过规定的方法来访问数据</li>
+</ul>
+<h4 id="封装实现的步骤"><a href="#封装实现的步骤" class="headerlink" title="封装实现的步骤"></a>封装实现的步骤</h4><ul>
+<li>修改成员属性的可见性为 private</li>
+<li>创建 getter/setter 方法，可见性为 public,用于对属性的访问</li>
+<li>在 getter/setter 方法中加入属性控制语句</li>
+</ul>
+<h4 id="public-公共权限"><a href="#public-公共权限" class="headerlink" title="public 公共权限"></a>public 公共权限</h4><ul>
+<li>公共权限的类，其类名必须与源文件的文件名保持一致</li>
+<li>只有声明为公共权限的类，才能在不同的包中进行访问</li>
+</ul>
+<h4 id="private-私有权限"><a href="#private-私有权限" class="headerlink" title="private    私有权限"></a>private    私有权限</h4><ul>
+<li>一般情况下，私有权限仅用于修饰成员函数和成员变量</li>
+<li>private 修饰的成员函数和成员变量只能在当前的类当中使用</li>
+</ul>
+<h4 id="default-包级别访问权限-默认权限"><a href="#default-包级别访问权限-默认权限" class="headerlink" title="default    包级别访问权限/默认权限"></a>default    包级别访问权限/默认权限</h4><ul>
+<li>此权限无需在类名、变量名或函数名前面使用权限修饰符 default</li>
+<li>在不同的包里面，不能访问 default 权限的类</li>
+</ul>
+<h4 id="protected-受保护权限"><a href="#protected-受保护权限" class="headerlink" title="protected    受保护权限"></a>protected    受保护权限</h4><ul>
+<li>protected 用于修饰成员，表示在继承体系中父类成员对于子类可见，但是这个访问修饰符对于类没有意义</li>
+<li>protected 权限拥有和 default 权限一样的功能</li>
+<li>protected 权限可以跨包进行使用</li>
+</ul>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>继承是使用已存在的类的定义作为基础建立新类的技术，新类的定义可以增加新的数据或新的功能，也可以用父类的功能，但不能选择性地继承父类。通过使用继承我们能够非常方便地复用以前的代码，<strong>JAVA 仅支持单继承</strong>，即一个子类只允许继承一个父类，但一个父类可以拥有多个子类。</p>
+<ul>
+<li>子类拥有父类非 private 的属性和方法</li>
+<li>子类可以拥有自己属性和方法，即子类可以对父类进行扩展</li>
+<li>子类可以用自己的方式实现父类的方法</li>
+<li>父类的构造方法不能被继承</li>
+</ul>
+<p><img src="https://images.csthink.com/Carbonize%202019-04-09%20at%2014.54.17.png" alt="继承"></p>
+<h4 id="super-关键字"><a href="#super-关键字" class="headerlink" title="super 关键字"></a>super 关键字</h4><ul>
+<li>访问父类的构造函数：可以使用 super() 函数访问父类的构造函数，从而委托父类完成一些初始化的工作，super() 必须是子类构造方法的第一行</li>
+<li>访问父类的成员：如果子类重写了父类的某个方法，可以通过使用 super 关键字来引用父类的方法实现，super.父类xx方法()</li>
+</ul>
+<h4 id="final-关键字"><a href="#final-关键字" class="headerlink" title="final 关键字"></a>final 关键字</h4><ul>
+<li>声明数据为常量，可以是编译时常量，也可以是在运行时被初始化后不能被改变的常量<ul>
+<li>对于基本类型，final 使数值不变；</li>
+<li>对于引用类型，final 使引用不变，也就不能引用其它对象，但是被引用的对象本身是可以修改</li>
+</ul>
+</li>
+<li>声明方法不能被子类重写<ul>
+<li>private 方法隐式地被指定为 final，如果在子类中定义的方法和基类中的一个private 方法签名相同，此时子类的方法不是重写基类方法，而是在子类中定义了一个新的方法</li>
+</ul>
+</li>
+<li>声明类不允许被继承</li>
+</ul>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p><strong>多态是指不同事物具有不同表现形式的能力。多态机制使具有不同内部结构的对象可以共享相同的外部接口，通过这种方式减少代码的复杂度</strong></p>
+<p>所谓多态就是指程序中定义的<strong>引用变量所指向的具体类型和通过该引用变量调用的方法</strong>在编程时并不确定，而是在程序运行期间才确定，即一个引用变量到底会指向哪个类的实例对象及该引用变量调用的方法到底是哪个类中实现的方法，必须在由程序运行期间才能决定。</p>
+<p>在Java中有两种形式可以实现多态：</p>
+<ul>
+<li>继承（多个子类对同一方法的重写）</li>
+<li>接口（实现接口并覆盖接口中同一方法）</li>
+</ul>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">csthink</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="/csthink.com/java/oop.html">csthink.com/java/oop.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a></div><div class="post-qr-code"><div class="post-qr-code-item"><img class="post-qr-code__img" src="https://images.csthink.com/zfb.jpg"><div class="post-qr-code__desc">支付宝打赏</div></div><div class="post-qr-code-item"><img class="post-qr-code__img" src="https://images.csthink.com/weixin.jpg"><div class="post-qr-code__desc">微信打赏</div></div></div><div class="social-share"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/java/desing_principle_part_one.html"><i class="fa fa-chevron-left">  </i><span>软件设计原则-上</span></a></div><div class="next-post pull-right"><a href="/java/collection.html"><span>Java 类集框架</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://images.csthink.com/rocket.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By csthink</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">致所有热爱编程的我们<br> Write Code. Make Magic.</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
